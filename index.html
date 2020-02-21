@@ -16,6 +16,29 @@
       <button id="button-playGame" type="submit" onclick="playGame()">Play Tic Tac Toe</button>
     </div>
 
+    <div class="main m-4 row">
+      <table class="col-6 offset-3">
+        <thead>
+          <tr class="table-rows">
+            <th class="board-border text-center" onclick="space(0)"></th>
+            <th class="board-border text-center background-X">1</th>
+            <th class="board-border text-center">2</th>
+          </tr>
+          <tr class="table-rows">
+            <th class="board-border text-center">3</th>
+            <th class="board-border text-center">4</th>
+            <th class="board-border text-center">5</th>
+          </tr>
+          <tr class="table-rows">
+            <th class="board-border text-center">6</th>
+            <th class="board-border text-center">7</th>
+            <th class="board-border text-center">8</th>
+          </tr>
+        </thead>
+        <tbody id="table-rows"></tbody>
+      </table>
+    </div>
+
 
     <script src="js/index.js"></script>
 </body>

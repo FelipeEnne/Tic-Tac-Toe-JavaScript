@@ -34,7 +34,8 @@ function updateSpace(board, space, value){
 //console.log(player1);
 //console.log(player2);
 
-function space(){
+function space(value){
+  console.log(value);
   return 0;//change
 }
 
