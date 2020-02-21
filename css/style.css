@@ -2,17 +2,25 @@
     margin: 35px 55px;
 }
 
-#button-playGame{
+#button-playGame {
     margin: 35px 55px;
 }
 
-.board-border{
+.board-border {
   border: 3px solid black;
   padding: 12% 0;
 }
 
-.background-X{
-  background-image: url('../anything.jpg');
-  background-size: 130%;
+.background-X, .background-O {
+  background-size: 80%;
   background-position: center center;
+  background-repeat: no-repeat;
+}
+
+.background-X{
+  background-image: url('../images/tttx.png');
+}
+
+.background-O{
+  background-image: url('../images/ttto.png');
 }
