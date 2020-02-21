@@ -2,8 +2,11 @@ const gameBoard = (space, value) => {
   const board = [0, 0, 0, 0, 0, 0, 0, 0, 0];
 
   const changeSpace = (space, value) => board[space] = value;
+  const getValue = (space) => {
+    return(board[space]);
+  };
 
-  return { board, changeSpace };
+  return { board, changeSpace, getValue };
 }
 
 const player = (name, symbol) => {
@@ -38,7 +41,8 @@ function space(value){
   updateSpace(board, value, playTurn);
   c = checkBoard(playTurn);
   playTurn == 1 ? playTurn = 2 : playTurn = 1;
-  console.log(board)
+  render(board);
+  // console.log(board)
   return playTurn;
 }
 
@@ -64,34 +68,30 @@ function checkBoard(play){
 function playGame(){
   board = init();
 
-
   player1 = initPlayers('Raphael', 'X');
   player2 = initPlayers('Felipe', 'O');
 
+  console.log(board);
+  render(board);
 }
 
-function render() {
+function render(board) {
   let tableRows = "";
-  board.forEach(i => {
-    tableRows += `<tr class="table-rows">
-                    <th class="board-border text-center" onclick="space(0)"></th>
-                    <th class="board-border text-center background-X" onclick="space(1)"></th>
-                    <th class="board-border text-center background-O"></th>
-                  </tr>
-                  <tr class="table-rows">
-                    <th class="board-border text-center">3</th>
-                    <th class="board-border text-center">4</th>
-                    <th class="board-border text-center">5</th>
-                  </tr>
-                  <tr class="table-rows">
-                    <th class="board-border text-center">6</th>
-                    <th class="board-border text-center">7</th>
-                    <th class="board-border text-center">8</th>
-                  </tr>`;
-  });
+  for(i = 0; i <= 2; i++){
+    tableRows += `<tr class="table-rows">`;
+    for(j = 0; j <= 2; j++){
+      if(board.getValue(i * 3 + j) == 0){
+        tableRows += `<th class="board-border" onclick="space(${i * 3 + j})"></th>`;
+      } else if(board.getValue(i * 3 + j) == 1){
+        tableRows += `<th class="board-border text-center background-X"></th>`;
+      } else {
+        tableRows += `<th class="board-border text-center background-O"></th>`;
+      };
+    };
+    tableRows += `</tr>`;
+  };
   document.getElementById("table-rows").innerHTML = tableRows;
 }
 
 
 playGame()
-console.log(board);

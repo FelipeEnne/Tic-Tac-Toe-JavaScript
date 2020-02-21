@@ -8,11 +8,11 @@
 
 .board-border {
   border: 3px solid black;
-  padding: 12% 0;
+  padding: 16.5% 0;
 }
 
 .background-X, .background-O {
-  background-size: 80%;
+  background-size: 100%;
   background-position: center center;
   background-repeat: no-repeat;
 }
