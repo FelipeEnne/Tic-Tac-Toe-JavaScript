@@ -9,9 +9,14 @@ const gameBoard = (space, value) => {
   return { board, changeSpace, getValue };
 }
 
-const player = (name, symbol) => {
-  const victor = () => console.log(name + " won!!!");
-  return{ name, symbol, victor };
+const player = (name) => {
+  const victor = (player) => {
+    return name + " won!!!";
+  }
+  const turn = (player) => {
+    return(player.name);
+  }
+  return{ name, victor, turn };
 }
 
 let playTurn = 1;
@@ -21,8 +26,8 @@ function init() {
   return(board)
 }
 
-function initPlayers(name, symbol) {
-  const play = player(name, symbol);
+function initPlayers(name) {
+  const play = player(name);
   play.victor();
   return(play);
 }
@@ -31,52 +36,67 @@ function updateSpace(board, space, value){
   board.changeSpace(space, value);
 }
 
-
-//updateSpace(board, 5, 1);
-//updateSpace(board, 0, 2);
-//console.log(player1);
-//console.log(player2);
-
 function space(value){
   updateSpace(board, value, playTurn);
   render(board);
 
   if(checkBoard(playTurn) == false){
     playTurn == 1 ? playTurn = 2 : playTurn = 1;
-    document.getElementById('player-turn').innerHTML = "Player "+ playTurn + " Turn";
-  }else{
-    document.getElementById('player-turn').innerHTML = "Player "+ playTurn + " Win";
+    if(playTurn == 1){
+      document.getElementById('player-turn').innerHTML = player1.name + "'s turn";
+    } else {
+      document.getElementById('player-turn').innerHTML = player2.name + "'s turn";
+    }
+  } else if(playTurn == 1){
+    document.getElementById('player-turn').innerHTML = player1.name + " won!!!";
+  } else {
+    document.getElementById('player-turn').innerHTML = player2.name + " won!!!";
   }
-  
-  console.log(board)
   return playTurn;
 }
 
 function checkBoard(play){
 
   for(let i = 0; i <= 2 ; i++){
-    if((board.getValue(i*3) == board.getValue(i*3+1) && board.getValue(i*3+1) == board.getValue(i*3+2) && board.getValue(i*3) != 0)|| 
-      (board.getValue(i) == board.getValue(i+3) && board.getValue(i+6) == board.getValue(i+3) && board.getValue(i) != 0)){
-        console.log(board.getValue(i))
-        return true;
-      }
+    if((board.getValue(i * 3) == board.getValue(i * 3 + 1) &&
+        board.getValue(i * 3) == board.getValue(i * 3 + 2) &&
+        board.getValue(i * 3) != 0)|| 
+       (board.getValue(i) == board.getValue(i + 3) && 
+        board.getValue(i) == board.getValue(i + 6) &&
+        board.getValue(i) != 0)){
+      return true;
+    }
   }
 
-  if((board.getValue(0) == board.getValue(4) && board.getValue(8) == board.getValue(4) && board.getValue(0) != 0) || 
-    (board.getValue(2) == board.getValue(4) && board.getValue(6) == board.getValue(4) && board.getValue(2) != 0)){
-       return true;
+  if((board.getValue(0) == board.getValue(4) &&
+      board.getValue(0) == board.getValue(8) &&
+      board.getValue(0) != 0) ||
+     (board.getValue(2) == board.getValue(4) &&
+      board.getValue(2) == board.getValue(6) &&
+      board.getValue(2) != 0)){
+    return true;
   }
-  
 
   return false;
 }
 
+function openModel() {
+  document.getElementById('model').style.display = 'block';
+}
 
-function playGame(){
+function closeModel() {
+  document.getElementById('model').style.display = 'none';
+}
+
+function playGame() {
+  closeModel();
   board = init();
 
-  player1 = initPlayers('Raphael', 'X');
-  player2 = initPlayers('Felipe', 'O');
+  let p1Name = document.getElementById('player1').value;
+  let p2Name = document.getElementById('player2').value;
+
+  player1 = initPlayers(p1Name);
+  player2 = initPlayers(p2Name);
 
   console.log(board);
   render(board);

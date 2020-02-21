@@ -12,8 +12,24 @@
         <h2>Tic Tac Toe</h2>
     </div>
 
+    <div id="model">
+      <form class="col-10 offset-1 my-4 form">
+        <fieldset>
+          <label for="player1">Player 1 name: </label>
+          <input type="text" id="player1" required>
+        </fieldset>
+        <fieldset>
+          <label for="player2">Player 2 name:</label>
+          <input type="text" id="player2" required>
+        </fieldset>
+        <button type="button" id="submit" onclick="playGame()">
+          Ok
+        </button>
+      </form>
+    </div>
+
     <div>
-      <button id="button-playGame" type="submit" onclick="playGame()">Play Tic Tac Toe</button>
+      <button id="button-playGame" type="submit" onclick="openModel()">Play Tic Tac Toe</button>
     </div>
 
     <div class="title">
@@ -21,7 +37,7 @@
     </div>
 
     <div class="main m-4 row">
-      <table class="col-6 offset-3">
+      <table class="col-4 offset-4">
         <thead>
           <tbody id="table-rows"></tbody>
         </thead>
