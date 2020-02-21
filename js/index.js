@@ -39,25 +39,32 @@ function updateSpace(board, space, value){
 
 function space(value){
   updateSpace(board, value, playTurn);
-  c = checkBoard(playTurn);
-  playTurn == 1 ? playTurn = 2 : playTurn = 1;
   render(board);
-  // console.log(board)
+
+  if(checkBoard(playTurn) == false){
+    playTurn == 1 ? playTurn = 2 : playTurn = 1;
+    document.getElementById('player-turn').innerHTML = "Player "+ playTurn + " Turn";
+  }else{
+    document.getElementById('player-turn').innerHTML = "Player "+ playTurn + " Win";
+  }
+  
+  console.log(board)
   return playTurn;
 }
 
 function checkBoard(play){
 
   for(let i = 0; i <= 2 ; i++){
-    if(board[i*3] == board[i*3+1] && board[i*3+1] == board[i*3+2] || 
-      board[i] == board[i+3] && board[i+6] == board[i+3]){
-         return true
+    if((board.getValue(i*3) == board.getValue(i*3+1) && board.getValue(i*3+1) == board.getValue(i*3+2) && board.getValue(i*3) != 0)|| 
+      (board.getValue(i) == board.getValue(i+3) && board.getValue(i+6) == board.getValue(i+3) && board.getValue(i) != 0)){
+        console.log(board.getValue(i))
+        return true;
       }
   }
 
-  if(board[0] == board[4] && board[8] == board[4] || 
-    board[2] == board[4] && board[6] == board[4]){
-       return true
+  if((board.getValue(0) == board.getValue(4) && board.getValue(8) == board.getValue(4) && board.getValue(0) != 0) || 
+    (board.getValue(2) == board.getValue(4) && board.getValue(6) == board.getValue(4) && board.getValue(2) != 0)){
+       return true;
   }
   
 
