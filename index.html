@@ -28,8 +28,21 @@
       </form>
     </div>
 
+    <div id="modelAI">
+      <form class="col-10 offset-1 my-4 form">
+        <fieldset>
+          <label for="player">Your name: </label>
+          <input type="text" id="player" required>
+        </fieldset>
+        <button type="button" id="submit" onclick="playGameAI()">
+          Ok
+        </button>
+      </form>
+    </div>
+
     <div>
       <button id="button-playGame" type="submit" onclick="openModel()">Play Tic Tac Toe</button>
+      <button id="button-playGame" type="submit" onclick="openModelAI()">Play against AI</button>
     </div>
 
     <div class="title">

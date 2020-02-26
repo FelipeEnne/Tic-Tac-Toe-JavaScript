@@ -20,6 +20,8 @@ const player = (name) => {
 }
 
 let playTurn = 1;
+let countSpaces = 0;
+let AI;
 
 function init() {
   const board = gameBoard();
@@ -36,21 +38,28 @@ function updateSpace(board, space, value){
   board.changeSpace(space, value);
 }
 
-let countSpaces = 0;
-
 function space(value){
   updateSpace(board, value, playTurn);
   render(board);
-  console.log(countSpaces)
   if(checkBoard(playTurn) == false){
     playTurn == 1 ? playTurn = 2 : playTurn = 1;
     if(countSpaces == 8){
       document.getElementById('player-turn').innerHTML = "Tied! start again";
-    }else if(playTurn == 1){
+    } else if(playTurn == 1){
       countSpaces ++;
       document.getElementById('player-turn').innerHTML = player1.name + "'s turn";
     } else {
       countSpaces ++;
+      if (AI == true){
+        let random = Math.floor(Math.random() * 9);
+        while(board.getValue(random) != 0){
+          console.log(random);
+          random = Math.floor(Math.random() * 9);
+        };
+        updateSpace(board, random, playTurn);
+        playTurn == 1 ? playTurn = 2 : playTurn = 1;
+      }
+      render(board);
       document.getElementById('player-turn').innerHTML = player2.name + "'s turn";
     }
   } else if(playTurn == 1){
@@ -92,14 +101,44 @@ function openModel() {
   document.getElementById('model').style.display = 'block';
 }
 
+function openModelAI() {
+  document.getElementById('modelAI').style.display = 'block';
+}
+
 function closeModel() {
   document.getElementById('model').style.display = 'none';
+}
+
+function closeModelAI() {
+  document.getElementById('modelAI').style.display = 'none';
+}
+
+function playGameAI() {
+  closeModelAI();
+  board = init();
+  countSpaces = 0;
+  AI = true;
+
+  let pName = document.getElementById('player').value;
+
+  if(pName == ""){
+    pName = "Player"
+  }
+
+  player1 = initPlayers(pName);
+  player2 = initPlayers('AI');
+
+  document.getElementById('player-turn').innerHTML = player1.name + "'s turn";
+
+  console.log(board);
+  render(board);
 }
 
 function playGame() {
   closeModel();
   board = init();
   countSpaces = 0;
+  AI = false;
 
   let p1Name = document.getElementById('player1').value;
   let p2Name = document.getElementById('player2').value;

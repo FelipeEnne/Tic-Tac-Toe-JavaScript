@@ -2,7 +2,7 @@
     margin: 35px 55px;
 }
 
-#model {
+#model, #modelAI {
   display: none;
   position: absolute;
   z-index: 20;
