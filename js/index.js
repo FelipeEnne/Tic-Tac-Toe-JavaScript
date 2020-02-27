@@ -1,5 +1,3 @@
-import { render, renderWinnerBorder } from './dom';
-
 const gameBoard = () => {
   const board = [0, 0, 0, 0, 0, 0, 0, 0, 0];
 
@@ -94,7 +92,7 @@ function changeTurn(playerTurn = this.playerTurn) {
   }
 }
 
-function space(value, board = this.board, playerTurn = this.playerTurn, playerTurnAI = this.playerTurnAI) {
+function space(value, board = this.board, playerTurn = this.playerTurn) {
   updateSpace(board, value, playerTurn.getPlayerTurn());
   render(board);
   if (checkBoard(playerTurn.getPlayerTurn()) === false) {
@@ -104,7 +102,7 @@ function space(value, board = this.board, playerTurn = this.playerTurn, playerTu
     } else if (playerTurn.getPlayerTurn() === 1) {
       document.getElementById('player-turn').innerHTML = `${this.player1.name}'s turn`;
     } else {
-      if (playerTurnAI.getPlayerTurnAI() === true) {
+      if (this.playerTurnAI.getPlayerTurnAI() === true) {
         let random = Math.floor(Math.random() * 9);
         while (board.getValue(random) !== 0) {
           random = Math.floor(Math.random() * 9);
@@ -123,22 +121,6 @@ function space(value, board = this.board, playerTurn = this.playerTurn, playerTu
     renderWinnerBorder(board);
   }
   return playerTurn.getPlayerTurn();
-}
-
-function openModel() {
-  document.getElementById('model').style.display = 'block';
-}
-
-function openModelAI() {
-  document.getElementById('modelAI').style.display = 'block';
-}
-
-function closeModel() {
-  document.getElementById('model').style.display = 'none';
-}
-
-function closeModelAI() {
-  document.getElementById('modelAI').style.display = 'none';
 }
 
 function playGameAI() {
@@ -181,7 +163,6 @@ function playGame() {
 
   this.player1 = initPlayers(p1Name);
   this.player2 = initPlayers(p2Name);
-
 
   document.getElementById('player-turn').innerHTML = `${this.player1.name}'s turn`;
 
