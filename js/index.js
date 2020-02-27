@@ -1,9 +1,7 @@
-let playTurn = 1;
-let countSpaces = 0;
 let AI;
 
 
-const gameBoard = (space, value) => {
+const gameBoard = () => {
   const board = [0, 0, 0, 0, 0, 0, 0, 0, 0];
 
   const changeSpace = (space, value) => {
@@ -15,14 +13,28 @@ const gameBoard = (space, value) => {
 };
 
 const player = (name) => {
-  const victor = (player) => `${name} won!!!`;
+  const victor = () => `${name} won!!!`;
   const turn = (player) => (player.name);
   return { name, victor, turn };
 };
 
+const playTurn = (value) => {
+  let playerTurn = value;
+
+  const setPlayerTurn = (value) => playerTurn = value;
+  const getPlayerTurn = () => (playerTurn);
+
+  return { playerTurn, setPlayerTurn, getPlayerTurn };
+}
+
 function init() {
   const board = gameBoard();
   return (board);
+}
+
+function initPlayTurn() {
+  const playerTurn = playTurn(1);
+  return (playerTurn);
 }
 
 function initPlayers(name) {
@@ -95,45 +107,43 @@ function checkBoard(play, board = this.board) {
   return false;
 }
 
-function changeTurn() {
-  if (playTurn === 1) {
-    playTurn = 2;
+function changeTurn(playerTurn = this.playerTurn) {
+  if (playerTurn.getPlayerTurn() === 1) {
+    playerTurn.setPlayerTurn(2);
   } else {
-    playTurn = 1;
+    playerTurn.setPlayerTurn(1);
   }
 }
 
-function space(value, board = this.board) {
-  updateSpace(board, value, playTurn);
+function space(value, board = this.board, playerTurn = this.playerTurn) {
+  updateSpace(board, value, playerTurn.getPlayerTurn());
   render(board);
-  if (checkBoard(playTurn) === false) {
+  if (checkBoard(playerTurn.getPlayerTurn()) === false) {
     changeTurn();
-    if (countSpaces === 8) {
+    if (board.board.every(value => value !== 0)) {
       document.getElementById('player-turn').innerHTML = 'Tied! start again';
-    } else if (playTurn === 1) {
-      countSpaces += 1;
+    } else if (playerTurn.getPlayerTurn() === 1) {
       document.getElementById('player-turn').innerHTML = `${this.player1.name}'s turn`;
     } else {
-      countSpaces += 1;
       if (AI === true) {
         let random = Math.floor(Math.random() * 9);
         while (board.getValue(random) !== 0) {
           random = Math.floor(Math.random() * 9);
         }
-        updateSpace(board, random, playTurn);
+        updateSpace(board, random, playerTurn.getPlayerTurn());
         changeTurn();
       }
       render(board);
       document.getElementById('player-turn').innerHTML = `${this.player2.name}'s turn`;
     }
-  } else if (playTurn === 1) {
+  } else if (playerTurn.getPlayerTurn() === 1) {
     document.getElementById('player-turn').innerHTML = `${this.player1.name} won!!!`;
     renderWinnerBorder(board);
   } else {
     document.getElementById('player-turn').innerHTML = `${this.player2.name} won!!!`;
     renderWinnerBorder(board);
   }
-  return playTurn;
+  return playerTurn.getPlayerTurn();
 }
 
 function openModel() {
@@ -152,10 +162,9 @@ function closeModelAI() {
   document.getElementById('modelAI').style.display = 'none';
 }
 
-function playGameAI(board = this.board) {
+function playGameAI() {
   closeModelAI();
   board = init();
-  countSpaces = 0;
   AI = true;
 
   let pName = document.getElementById('player').value;
@@ -172,10 +181,10 @@ function playGameAI(board = this.board) {
   render(board);
 }
 
-function playGame(board = this.board) {
+function playGame() {
   closeModel();
   board = init();
-  countSpaces = 0;
+  playerTurn = initPlayTurn();
   AI = false;
 
   let p1Name = document.getElementById('player1').value;
