@@ -1,5 +1,4 @@
-let AI;
-
+import { render, renderWinnerBorder } from './dom';
 
 const gameBoard = () => {
   const board = [0, 0, 0, 0, 0, 0, 0, 0, 0];
@@ -13,19 +12,31 @@ const gameBoard = () => {
 };
 
 const player = (name) => {
-  const victor = () => `${name} won!!!`;
   const turn = (player) => (player.name);
-  return { name, victor, turn };
+  return { name, turn };
 };
 
 const playTurn = (value) => {
   let playerTurn = value;
 
-  const setPlayerTurn = (value) => playerTurn = value;
+  const setPlayerTurn = (value) => {
+    playerTurn = value;
+  };
   const getPlayerTurn = () => (playerTurn);
 
   return { playerTurn, setPlayerTurn, getPlayerTurn };
-}
+};
+
+const playTurnAI = (value) => {
+  let playerAI = value;
+
+  const setPlayerTurnAI = (value) => {
+    playerAI = value;
+  };
+  const getPlayerTurnAI = () => (playerAI);
+
+  return { playerAI, setPlayerTurnAI, getPlayerTurnAI };
+};
 
 function init() {
   const board = gameBoard();
@@ -37,50 +48,18 @@ function initPlayTurn() {
   return (playerTurn);
 }
 
+function initPlayTurnAI() {
+  const playAI = playTurnAI(true);
+  return (playAI);
+}
+
 function initPlayers(name) {
   const play = player(name);
-  play.victor();
   return (play);
 }
 
 function updateSpace(board, space, value) {
   board.changeSpace(space, value);
-}
-
-function render(board) {
-  let tableRows = '';
-  for (let i = 0; i <= 2; i += 1) {
-    tableRows += '<tr class="table-rows">';
-    for (let j = 0; j <= 2; j += 1) {
-      if (board.getValue(i * 3 + j) === 0) {
-        tableRows += `<th class="board-border" onclick="space(${i * 3 + j})"></th>`;
-      } else if (board.getValue(i * 3 + j) === 1) {
-        tableRows += '<th class="board-border text-center background-X"></th>';
-      } else {
-        tableRows += '<th class="board-border text-center background-O"></th>';
-      }
-    }
-    tableRows += '</tr>';
-  }
-  document.getElementById('table-rows').innerHTML = tableRows;
-}
-
-function renderWinnerBorder(board) {
-  let tableRows = '';
-  for (let i = 0; i <= 2; i += 1) {
-    tableRows += '<tr class="table-rows">';
-    for (let j = 0; j <= 2; j += 1) {
-      if (board.getValue(i * 3 + j) === 0) {
-        tableRows += '<th class="board-border"></th>';
-      } else if (board.getValue(i * 3 + j) === 1) {
-        tableRows += '<th class="board-border text-center background-X"></th>';
-      } else {
-        tableRows += '<th class="board-border text-center background-O"></th>';
-      }
-    }
-    tableRows += '</tr>';
-  }
-  document.getElementById('table-rows').innerHTML = tableRows;
 }
 
 function checkBoard(play, board = this.board) {
@@ -115,7 +94,7 @@ function changeTurn(playerTurn = this.playerTurn) {
   }
 }
 
-function space(value, board = this.board, playerTurn = this.playerTurn) {
+function space(value, board = this.board, playerTurn = this.playerTurn, playerTurnAI = this.playerTurnAI) {
   updateSpace(board, value, playerTurn.getPlayerTurn());
   render(board);
   if (checkBoard(playerTurn.getPlayerTurn()) === false) {
@@ -125,7 +104,7 @@ function space(value, board = this.board, playerTurn = this.playerTurn) {
     } else if (playerTurn.getPlayerTurn() === 1) {
       document.getElementById('player-turn').innerHTML = `${this.player1.name}'s turn`;
     } else {
-      if (AI === true) {
+      if (playerTurnAI.getPlayerTurnAI() === true) {
         let random = Math.floor(Math.random() * 9);
         while (board.getValue(random) !== 0) {
           random = Math.floor(Math.random() * 9);
@@ -165,7 +144,9 @@ function closeModelAI() {
 function playGameAI() {
   closeModelAI();
   board = init();
-  AI = true;
+  playerTurn = initPlayTurn();
+  playerTurnAI = initPlayTurnAI();
+  playerTurnAI.setPlayerTurnAI(true);
 
   let pName = document.getElementById('player').value;
 
@@ -185,7 +166,8 @@ function playGame() {
   closeModel();
   board = init();
   playerTurn = initPlayTurn();
-  AI = false;
+  playerTurnAI = initPlayTurnAI();
+  playerTurnAI.setPlayerTurnAI(false);
 
   let p1Name = document.getElementById('player1').value;
   let p2Name = document.getElementById('player2').value;
