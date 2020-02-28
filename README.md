@@ -24,7 +24,7 @@ A simple Tic-Tac-Toe app build with Javascript and HTML.
 Full task description: <a href="https://www.theodinproject.com/courses/javascript/lessons/tic-tac-toe-javascript"> Odin Project.</a>
 
 
-For a live version click [here](https://raw.githack.com/FelipeEnne/Tic-Tac-Toe-JavaScript/tic-tac-toe-game/index.html).
+For a live version click [here](https://raw.githack.com/FelipeEnne/Tic-Tac-Toe-JavaScript/development/index.html).
 
 
 ### Built With 
