@@ -1,0 +1,27 @@
+{
+  "name": "Tic-Tac-Toe-JavaScript",
+  "version": "1.0.0",
+  "description": "Tic Tac Toe game",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FelipeEnne/Tic-Tac-Toe-JavaScript.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/FelipeEnne/Tic-Tac-Toe-JavaScript/issues"
+  },
+  "homepage": "https://github.com/FelipeEnne/Tic-Tac-Toe-JavaScript#readme",
+  "devDependencies": {
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.20.1",
+    "webpack": "^4.41.6"
+  },
+  "dependencies": {}
+}

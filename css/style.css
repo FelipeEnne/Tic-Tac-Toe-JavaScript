@@ -1,0 +1,52 @@
+.title {
+    margin: 35px 55px;
+}
+
+#model, #modelAI {
+  display: none;
+  position: absolute;
+  z-index: 20;
+  background-color: #b9b6b6;
+  top: 5%;
+  left: 40%;
+  width: 50%;
+  border-color: black;
+  border-style: inset;
+}
+
+.form label{
+  font-weight: bold;
+  padding-top: 10px;
+}
+
+.form input{
+  width: 100%;
+}
+
+.form button {
+  margin-bottom: 10px;
+}
+
+
+#button-playGame {
+  margin: 35px 55px;
+}
+
+.board-border {
+  border: 3px solid black;
+  padding: 16.5% 0;
+}
+
+.background-X, .background-O {
+  background-size: 100%;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+.background-X{
+  background-image: url('../images/tttx.png');
+}
+
+.background-O{
+  background-image: url('../images/ttto.png');
+}
