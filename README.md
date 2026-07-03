@@ -1,56 +1,68 @@
 <br />
-<h1 align="center">Tic-Tac-Toe Javascript</h1>
-
-
-<!-- TABLE OF CONTENTS -->
-
+<h1 align="center">Tic-Tac-Toe JavaScript</h1>
 
 ## Table of Contents
 
 * [About the Project](#about-the-project)
   * [Built With](#built-with)
 * [Run This App](#run-this-app)
+* [Development](#development)
 * [License](#license)
 * [Contact](#contact)
 * [Acknowledgements](#acknowledgements)
 
-
-<!-- ABOUT THE PROJECT -->
 ## About The Project
 
-A simple Tic-Tac-Toe app build with Javascript and HTML.
+A simple Tic-Tac-Toe app built with JavaScript and HTML.
 
+Game modes:
 
-Full task description: <a href="https://www.theodinproject.com/courses/javascript/lessons/tic-tac-toe-javascript"> Odin Project.</a>
+* **Two players** — play against a friend on the same device
+* **Against AI** — play against a simple computer opponent
 
+Full task description: [Odin Project – Tic Tac Toe](https://www.theodinproject.com/courses/javascript/lessons/tic-tac-toe-javascript).
 
-For a live version click [here](https://raw.githack.com/FelipeEnne/Tic-Tac-Toe-JavaScript/development/index.html).
+For a live version, click [here](https://raw.githack.com/FelipeEnne/Tic-Tac-Toe-JavaScript/development/index.html).
 
-
-### Built With 
+### Built With
 
 * HTML
 * CSS
+* JavaScript
 * Git
-* Github
-* JavaScritp
-
+* GitHub
 
 ## Run This App
 
-<p>Just open the index.html file.</p>
+No build step is required. Open `index.html` in your browser.
 
+You can also serve the project folder with any static file server, for example:
+
+```bash
+npx serve .
+```
+
+Then open the URL shown in the terminal.
+
+## Development
+
+Install dependencies and run the linter:
+
+```bash
+npm install
+npm run lint
+```
 
 ## License
 
 Distributed under the MIT License. See `LICENSE` for more information.
 
-<!-- CONTACT -->
 ## Contact
-* Felipe Enne - felipeenne@gmail.com | [Github Account https://github.com/FelipeEnne](https://github.com/FelipeEnne)
-* Raphael Cordeiro - phalado@gmail.com | [Github Account https://github.com/phalado](https://github.com/phalado)
 
-<!-- ACKNOWLEDGEMENTS -->
+* Felipe Enne — felipeenne@gmail.com | [GitHub](https://github.com/FelipeEnne)
+* Raphael Cordeiro — phalado@gmail.com | [GitHub](https://github.com/phalado)
+
 ## Acknowledgements
 
-* <a href="https://www.microverse.org/"> Microverse</a>  and <a href="https://www.theodinproject.com/"> Odin Project</a> .
+* [Microverse](https://www.microverse.org/)
+* [Odin Project](https://www.theodinproject.com/)

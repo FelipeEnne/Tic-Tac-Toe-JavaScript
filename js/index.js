@@ -98,9 +98,9 @@ function space(value, board = this.board, playerTurn = this.playerTurn) {
   if (checkBoard(playerTurn.getPlayerTurn()) === false) {
     changeTurn();
     if (board.board.every(value => value !== 0)) {
-      document.getElementById('player-turn').innerHTML = 'Tied! start again';
+      document.getElementById('player-turn').textContent = 'Tied! start again';
     } else if (playerTurn.getPlayerTurn() === 1) {
-      document.getElementById('player-turn').innerHTML = `${this.player1.name}'s turn`;
+      document.getElementById('player-turn').textContent = `${this.player1.name}'s turn`;
     } else {
       if (this.playerTurnAI.getPlayerTurnAI() === true) {
         let random = Math.floor(Math.random() * 9);
@@ -111,13 +111,13 @@ function space(value, board = this.board, playerTurn = this.playerTurn) {
         changeTurn();
       }
       render(board);
-      document.getElementById('player-turn').innerHTML = `${this.player2.name}'s turn`;
+      document.getElementById('player-turn').textContent = `${this.player2.name}'s turn`;
     }
   } else if (playerTurn.getPlayerTurn() === 1) {
-    document.getElementById('player-turn').innerHTML = `${this.player1.name} won!!!`;
+    document.getElementById('player-turn').textContent = `${this.player1.name} won!!!`;
     renderWinnerBorder(board);
   } else {
-    document.getElementById('player-turn').innerHTML = `${this.player2.name} won!!!`;
+    document.getElementById('player-turn').textContent = `${this.player2.name} won!!!`;
     renderWinnerBorder(board);
   }
   return playerTurn.getPlayerTurn();
@@ -139,7 +139,7 @@ function playGameAI() {
   this.player1 = initPlayers(pName);
   this.player2 = initPlayers('AI');
 
-  document.getElementById('player-turn').innerHTML = `${this.player1.name}'s turn`;
+  document.getElementById('player-turn').textContent = `${this.player1.name}'s turn`;
 
   render(board);
 }
@@ -164,7 +164,7 @@ function playGame() {
   this.player1 = initPlayers(p1Name);
   this.player2 = initPlayers(p2Name);
 
-  document.getElementById('player-turn').innerHTML = `${this.player1.name}'s turn`;
+  document.getElementById('player-turn').textContent = `${this.player1.name}'s turn`;
 
   render(board);
 }
